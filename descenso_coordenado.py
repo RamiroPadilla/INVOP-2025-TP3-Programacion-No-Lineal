@@ -2,6 +2,7 @@
 
 from scipy.optimize import minimize_scalar
 import numpy as np
+import time
 
 TOLERANCE = 1e-07
 
@@ -45,8 +46,12 @@ def resolver_descenso(puntos, pesos, max_iter=100):
             break
     return xk
 
-
+start = time.time()
 solucion = resolver_descenso(puntos, pesos)
+end = time.time()
+tiempo = end - start
+print(f'Tiempo de computo para instancia de {len(puntos)} puntos, de dimension {len(puntos[0])}:') 
+print(f'{tiempo:.5f} segundos')
 
 #%%
 # solo graficar si estamos en R2
