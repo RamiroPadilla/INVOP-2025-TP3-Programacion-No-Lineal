@@ -1,0 +1,11 @@
+EN DISTRIBUCION: 
+dimensiones = [2, 5, 10]
+cant_puntos = [20, 50, 100]
+tipos = ['uniforme', 'clusters', 'lineal']
+
+EN DIMENSIONAL:
+dimensiones = [2, 5, 10, 15, 20, 30]
+cant_puntos = [20, 50, 100]
+tipos = ['uniforme']
+CON 3 REPLICAS DE CADA COMBINACION. 
+LAS INSTANCIAS QUE SE REPETIRÍAN DE "DISTRIBUCIÓN" NO ESTAN.
