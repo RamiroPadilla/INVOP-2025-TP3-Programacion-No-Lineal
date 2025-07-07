@@ -1,8 +1,9 @@
+#%%
 import os
 import numpy as np
 from sklearn.datasets import make_blobs
 
-def generar_instancia(n, m, tipo='uniforme', archivo_salida='instancia.txt', rango=(-100, 100), k_clusters=3):
+def generar_instancia(n, m, rango, tipo='uniforme', archivo_salida='instancia.txt', k_clusters=3):
     # Generar puntos según tipo
     if tipo == 'uniforme':
         puntos = np.random.uniform(low=rango[0], high=rango[1], size=(m, n))
@@ -10,7 +11,9 @@ def generar_instancia(n, m, tipo='uniforme', archivo_salida='instancia.txt', ran
     elif tipo == 'clusters':
         if k_clusters > m:
             raise ValueError("La cantidad de clusters no puede superar la cantidad de puntos")
-        puntos, _ = make_blobs(n_samples=m, centers=k_clusters, n_features=n, cluster_std=10)
+        std = 1000
+        rango_centros = (rango[0] + std*3, rango[1] - std*3) 
+        puntos, _ = make_blobs(n_samples=m, centers=k_clusters, n_features=n, cluster_std=std, center_box= rango_centros)
 
     elif tipo == 'lineal':
         a = np.random.uniform(*rango, size=n)
@@ -21,7 +24,7 @@ def generar_instancia(n, m, tipo='uniforme', archivo_salida='instancia.txt', ran
     else:
         raise ValueError(f"Tipo de instancia no reconocido: {tipo}")
 
-    pesos = np.random.randint(1, 11, size=(m, 1))
+    pesos = np.random.randint(1, 50, size=(m, 1)) # PESOS ENTRE 1 Y 50
     datos = np.hstack([puntos, pesos])
 
     with open(archivo_salida, 'w') as f:
@@ -35,16 +38,16 @@ def generar_instancia(n, m, tipo='uniforme', archivo_salida='instancia.txt', ran
     print(f"Instancia guardada en: {archivo_salida}")
 
 #%% Iniciar instancias variadas
-"""
+
 # Parámetros
 dimensiones = [2, 5, 10]
-cant_puntos = [20, 50, 100]
+cant_puntos = [2000, 5000, 10000]
 tipos = ['uniforme', 'clusters', 'lineal']
-k_clusters = 3  # número de clusters para el tipo clusters
-rango = (-100, 100)
+k_clusters = 6  # número de clusters para el tipo clusters
+rango = (-10000, 10000)
 
 # Carpeta donde guardar las instancias
-folder = 'instancias'
+folder = 'instancias\distribucion'
 
 if not os.path.exists(folder):
     os.makedirs(folder)
@@ -56,19 +59,19 @@ for n in dimensiones:
             # Para clusters: evitar que k_clusters > m
             k_c = min(k_clusters, m)
             nombre_archivo = f"{folder}/inst_n{n}_m{m}_{tipo}.txt"
-            generar_instancia(n=n, m=m, tipo=tipo, archivo_salida=nombre_archivo, rango=rango, k_clusters=k_c)
+            generar_instancia(n=n, m=m, rango = rango, tipo=tipo, archivo_salida=nombre_archivo, k_clusters=k_c)
 
-"""
+
 #%% Iniciar mas instancias
 
 dimensiones = [2, 5, 10, 15, 20, 30]
-cant_puntos = [20, 50, 100]
+cant_puntos = [2000, 5000, 10000]
 tipos = ['uniforme']
-k_clusters = 3  # número de clusters para el tipo clusters
-rango = (-100, 100)
+k_clusters = 6  # número de clusters para el tipo clusters
+rango = (-10000, 10000)
 
 # Carpeta donde guardar las instancias
-folder = 'instancias'
+folder = 'instancias\dimensional'
 
 if not os.path.exists(folder):
     os.makedirs(folder)
@@ -80,5 +83,6 @@ for n in dimensiones:
             # Para clusters: evitar que k_clusters > m
             k_c = min(k_clusters, m)
             nombre_archivo = f"{folder}/inst_n{n}_m{m}_{tipo}_{3}.txt"
-            generar_instancia(n=n, m=m, tipo=tipo, archivo_salida=nombre_archivo, rango=rango, k_clusters=k_c)
+            generar_instancia(n=n, m=m, rango = rango, tipo=tipo, archivo_salida=nombre_archivo, k_clusters=k_c)
+
 # %%

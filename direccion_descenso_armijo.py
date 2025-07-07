@@ -1,5 +1,7 @@
+#%%
 import numpy as np
-
+import time
+import matplotlib.pyplot as plt
 # 1 - Funcion objetivo (Fermat–Weber)
 def funcion_objetivo(x, P, w):
     return np.sum(w * np.linalg.norm(P - x, axis=1))
@@ -13,8 +15,8 @@ def gradiente_funcion(x, P, w):
 
 # 3 - Direccion de descenso por gradiente, usando el criterio de armijo (para el alpha)
 # Selecciono alphak 0.5 (entre 0,1 y 0,9 alphak) y c1 para poder cambiarlos si hace falta
-def descenso_gradiente_armijo(P, w, x0=None, tol=1e-6, max_iter=1000, alpha0=1.0, alphak=0.5, c1=1e-4):
-    
+def descenso_gradiente_armijo(P, w, x0=None, tol=1e-6, max_iter=5000, alpha0=1.0, alphak=0.5, c1=1e-4):
+    t0 = time.time()
     # Inicializo a x
     if x0 is None:
         xk = np.average(P, axis=0, weights=w)
@@ -40,4 +42,18 @@ def descenso_gradiente_armijo(P, w, x0=None, tol=1e-6, max_iter=1000, alpha0=1.0
         xk = x_nuevo
     
     f_opt = funcion_objetivo(xk, P, w)
-    return xk, f_opt, k
+    tiempo = time.time() - t0
+    return xk, tiempo, k
+
+#%%
+# Ejemplo de uso
+datos = np.loadtxt('instancias\distribucion\inst_n2_m5000_clusters.txt', skiprows=2)
+P = datos[:, :-1]
+w = datos[:, -1]
+
+punto_optimo, tiempo_ejecucion, cant_iteraciones = descenso_gradiente_armijo(P, w)
+
+print("Punto óptimo:", punto_optimo)
+print("Tiempo de ejecución:", tiempo_ejecucion)
+print("Cantidad de iteraciones:", cant_iteraciones)
+# %%

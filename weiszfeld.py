@@ -1,33 +1,8 @@
+#%%
 import numpy as np
 import time
 
-def leer_instancia(ruta_archivo):
-    """
-    Lee una instancia desde un archivo y devuelve las coordenadas P  y los pesos w.
-    
-    :param archivo: Ruta al archivo de la instancia.
-    :return: Tuple (coordenadas, pesos) donde coordenadas es un array de shape (m, n) y pesos es un array de shape (m, 1).
-    """
-    with open(ruta_archivo, 'r') as f:
-        n = int(f.readline())
-        m = int(f.readline())
-
-        P = []
-        w = []
-
-        for _ in range(m):
-            valores = f.readline().strip().split()
-            coordenadas = list(map(float, valores[:-1]))
-            peso = int(valores[-1])
-            P.append(coordenadas)
-            w.append(peso)
-    
-    P = np.array(P)
-    w = np.array(w)
-    
-    return P, w
-
-
+# ########### reemplazo leerinstancia() por np.loadtxt() ###########
 
 #funcion objetivo
 def f(x, P, w): 
@@ -107,7 +82,7 @@ def T_somb(xk, P, w):
             
 
 # Algoritmo de Weiszfeld
-def weiszfeld(P, w, tol=1e-6, max_iter=500000):
+def weiszfeld(P, w, tol=1e-6, max_iter=5000):
     #Con ambas modificaciones
     # Devuelve el punto optimo y el tiempo de ejecución
 
@@ -144,16 +119,32 @@ def weiszfeld(P, w, tol=1e-6, max_iter=500000):
     tiempo = time.time() - t0
     return xk, tiempo, iteraciones
 
-"""
+
+#%%
+# """
+# # Ejemplo de uso
+# if __name__ == "__main__":
+#     ruta_archivo = "INVOP-2025-TP3-Programacion-No-Lineal\instancias\dimensional\inst_n2_m20_uniforme_2.txt" 
+#     P, w = leer_instancia(ruta_archivo)
+    
+#     punto_optimo, tiempo_ejecucion, cant_iteraciones = weiszfeld(P, w)
+    
+#     print("Punto óptimo:", punto_optimo)
+#     print("Tiempo de ejecución:", tiempo_ejecucion)
+#     print("Cantidad de iteraciones:", cant_iteraciones)
+#     print("Valor de la función objetivo:", f(punto_optimo, P, w))
+# """
+
 # Ejemplo de uso
-if __name__ == "__main__":
-    ruta_archivo = "INVOP-2025-TP3-Programacion-No-Lineal\instancias\dimensional\inst_n2_m20_uniforme_2.txt" 
-    P, w = leer_instancia(ruta_archivo)
-    
-    punto_optimo, tiempo_ejecucion, cant_iteraciones = weiszfeld(P, w)
-    
-    print("Punto óptimo:", punto_optimo)
-    print("Tiempo de ejecución:", tiempo_ejecucion)
-    print("Cantidad de iteraciones:", cant_iteraciones)
-    print("Valor de la función objetivo:", f(punto_optimo, P, w))
-"""
+datos = np.loadtxt('instancias\distribucion\inst_n2_m5000_clusters.txt', skiprows=2)
+P = datos[:, :-1]
+w = datos[:, -1]
+
+punto_optimo, tiempo_ejecucion, cant_iteraciones = weiszfeld(P, w)
+
+print("Punto óptimo:", punto_optimo)
+print("Tiempo de ejecución:", tiempo_ejecucion)
+print("Cantidad de iteraciones:", cant_iteraciones)
+# print("Valor de la función objetivo:", f(punto_optimo, P, w))
+
+# %%
