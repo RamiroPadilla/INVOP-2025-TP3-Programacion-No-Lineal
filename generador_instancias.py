@@ -11,8 +11,8 @@ def generar_instancia(n, m, rango, tipo='uniforme', archivo_salida='instancia.tx
     elif tipo == 'clusters':
         if k_clusters > m:
             raise ValueError("La cantidad de clusters no puede superar la cantidad de puntos")
-        std = 1000
-        rango_centros = (rango[0] + std*3, rango[1] - std*3) 
+        std = 5000
+        rango_centros = (rango[0] + std*2, rango[1] - std*2) 
         puntos, _ = make_blobs(n_samples=m, centers=k_clusters, n_features=n, cluster_std=std, center_box= rango_centros)
 
     elif tipo == 'lineal':
@@ -37,14 +37,14 @@ def generar_instancia(n, m, rango, tipo='uniforme', archivo_salida='instancia.tx
 
     print(f"Instancia guardada en: {archivo_salida}")
 
-#%% Iniciar instancias variadas
+#%% DISTRIBUCIONES
 
 # Parámetros
-dimensiones = [2, 5, 10]
-cant_puntos = [2000, 5000, 10000]
+dimensiones = [2]
+cant_puntos = [500, 5000, 20000]
 tipos = ['uniforme', 'clusters', 'lineal']
-k_clusters = 6  # número de clusters para el tipo clusters
-rango = (-10000, 10000)
+k_clusters = 8  # número de clusters
+rango = (-50000, 50000)
 
 # Carpeta donde guardar las instancias
 folder = 'instancias\distribucion'
@@ -58,17 +58,17 @@ for n in dimensiones:
         for tipo in tipos:
             # Para clusters: evitar que k_clusters > m
             k_c = min(k_clusters, m)
-            nombre_archivo = f"{folder}/inst_n{n}_m{m}_{tipo}.txt"
+            nombre_archivo = f"{folder}/inst_dim{n}_n{m}_{tipo}.txt"
             generar_instancia(n=n, m=m, rango = rango, tipo=tipo, archivo_salida=nombre_archivo, k_clusters=k_c)
 
 
 #%% Iniciar mas instancias
 
 dimensiones = [2, 5, 10, 15, 20, 30]
-cant_puntos = [2000, 5000, 10000]
-tipos = ['uniforme']
-k_clusters = 6  # número de clusters para el tipo clusters
-rango = (-10000, 10000)
+cant_puntos = [500, 5000, 20000]
+tipos = ['clusters']
+k_clusters = 8 # número de clusters
+rango = (-50000, 50000)
 
 # Carpeta donde guardar las instancias
 folder = 'instancias\dimensional'
@@ -82,7 +82,7 @@ for n in dimensiones:
         for tipo in tipos:
             # Para clusters: evitar que k_clusters > m
             k_c = min(k_clusters, m)
-            nombre_archivo = f"{folder}/inst_n{n}_m{m}_{tipo}_{3}.txt"
-            generar_instancia(n=n, m=m, rango = rango, tipo=tipo, archivo_salida=nombre_archivo, k_clusters=k_c)
+            nombre_archivo = f"{folder}/inst_dim{n}_n{m}_{tipo}_{k_c}_clusters.txt"
+            generar_instancia(n=n, m=m, rango = rango, tipo=tipo, archivo_salida=nombre_archivo, k_clusters = k_c)
 
 # %%
