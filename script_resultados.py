@@ -22,7 +22,8 @@ def resultados(ruta_carpeta):
             'nombre_instancia': txt,
             'algoritmo': 'weiszfeld',
             'tiempo_computo': t_weisz,
-            'cant_iteraciones': it_weisz
+            'cant_iteraciones': it_weisz,
+            'punto_optimo' : p_optimo_weiszfeld
         })
 
         p_optimo_desc_coord, t_desc_coord, it_desc_coord = resolver_descenso_coordenado(P, w)
@@ -30,7 +31,8 @@ def resultados(ruta_carpeta):
             'nombre_instancia': txt,
             'algoritmo': 'desc_coord',
             'tiempo_computo': t_desc_coord,
-            'cant_iteraciones': it_desc_coord
+            'cant_iteraciones': it_desc_coord,
+            'punto_optimo' : p_optimo_desc_coord
         })
         
         p_optimo_desc_grad, t_desc_grad, it_desc_grad = descenso_gradiente_armijo(P, w)
@@ -38,7 +40,8 @@ def resultados(ruta_carpeta):
             'nombre_instancia': txt,
             'algoritmo': 'desc_grad_armijo',
             'tiempo_computo': t_desc_grad,
-            'cant_iteraciones': it_desc_grad
+            'cant_iteraciones': it_desc_grad,
+            'punto_optimo' : p_optimo_desc_grad
         })
 
     df = pd.DataFrame(resultados)
