@@ -38,6 +38,9 @@ def descenso_gradiente_armijo(P, w, x0=None, tol=1e-6, max_iter=5000, alpha0=1.0
             if funcion_objetivo(x_nuevo, P, w) <= f0 + c1 * alpha * grad.dot(d):
                 break
             alpha *= alphak
+            
+        if np.linalg.norm(x_nuevo - xk) < tol:
+            break
         
         xk = x_nuevo
     
