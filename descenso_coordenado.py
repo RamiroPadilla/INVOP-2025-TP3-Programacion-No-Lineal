@@ -14,7 +14,7 @@ def descenso_coordenado(xk, k, pesos, puntos):
     return res.x  #valor óptimo de a
 
 
-def resolver_descenso(puntos, pesos, max_iter=5000, tol=1e-6,):
+def resolver_descenso_coordenado(puntos, pesos, max_iter=5000, tol=1e-6,):
     t0 = time.time()
     dim = len(puntos[0])
 
@@ -40,7 +40,7 @@ datos = np.loadtxt('instancias\distribucion\inst_n2_m5000_clusters.txt', skiprow
 P = datos[:, :-1]
 w = datos[:, -1]
 
-punto_optimo, tiempo_ejecucion, cant_iteraciones = resolver_descenso(P, w)
+punto_optimo, tiempo_ejecucion, cant_iteraciones = resolver_descenso_coordenado(P, w)
 
 print("Punto óptimo:", punto_optimo)
 print("Tiempo de ejecución:", tiempo_ejecucion)
