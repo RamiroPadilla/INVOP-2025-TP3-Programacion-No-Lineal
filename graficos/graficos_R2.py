@@ -2,6 +2,12 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
+plt.rcParams.update({
+    "font.family": "serif",
+    "font.serif": ["DejaVu Serif"],
+})
+#%%
+
 datos = np.loadtxt('..\instancias\distribucion\inst_n2_m2000_clusters.txt', skiprows=2)
 puntos = datos[:, :2]
 pesos = datos[:, 2]
