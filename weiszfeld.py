@@ -134,17 +134,3 @@ def weiszfeld(P, w, tol=1e-6, max_iter=5000):
 #     print("Cantidad de iteraciones:", cant_iteraciones)
 #     print("Valor de la función objetivo:", f(punto_optimo, P, w))
 # """
-
-# Ejemplo de uso
-datos = np.loadtxt('instancias\distribucion\inst_n2_m5000_clusters.txt', skiprows=2)
-P = datos[:, :-1]
-w = datos[:, -1]
-
-punto_optimo, tiempo_ejecucion, cant_iteraciones = weiszfeld(P, w)
-
-print("Punto óptimo:", punto_optimo)
-print("Tiempo de ejecución:", tiempo_ejecucion)
-print("Cantidad de iteraciones:", cant_iteraciones)
-# print("Valor de la función objetivo:", f(punto_optimo, P, w))
-
-# %%
