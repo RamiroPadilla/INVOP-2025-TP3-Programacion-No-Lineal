@@ -1,8 +1,5 @@
-#%%
 import numpy as np
 import time
-
-# ########### reemplazo leerinstancia() por np.loadtxt() ###########
 
 #funcion objetivo
 def f(x, P, w): 
@@ -118,7 +115,6 @@ def weiszfeld(P, w, tol=1e-6, max_iter=5000):
 
     tiempo = time.time() - t0
     return xk, tiempo, iteraciones
-
 
 #%%
 # """
