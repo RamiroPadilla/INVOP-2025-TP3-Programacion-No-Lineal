@@ -20,7 +20,7 @@ n = len(puntos)
 plt.xlabel('X')
 plt.ylabel('Y')
 plt.grid(True)
-plt.savefig(fname=f'{n}_pts_cluster', dpi=250, bbox_inches='tight')
+plt.savefig(fname=f'{n}_pts_cluster', dpi=250, bbox_inches='tight', pad_inches=0.2)
 plt.close()
 
 # %%
@@ -37,7 +37,7 @@ n = len(puntos)
 plt.xlabel('X')
 plt.ylabel('Y')
 plt.grid(True)
-plt.savefig(fname = f'{n}_pts_lineal',dpi=250, bbox_inches='tight')
+plt.savefig(fname = f'{n}_pts_lineal',dpi=250, bbox_inches='tight', pad_inches=0.2)
 plt.close()
 # %%
 
@@ -53,6 +53,6 @@ n = len(puntos)
 plt.xlabel('X')
 plt.ylabel('Y')
 plt.grid(True)
-plt.savefig(fname = f'{n}_pts_uniforme',dpi=250, bbox_inches='tight')
+plt.savefig(fname = f'{n}_pts_uniforme',dpi=250, bbox_inches='tight', pad_inches=0.2)
 plt.close()
 # %%
