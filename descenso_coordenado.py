@@ -12,7 +12,7 @@ def descenso_coordenado(xk, k, pesos, puntos):
     return res.x
 
 
-def resolver_descenso_coordenado(puntos, pesos, max_iter=5000, tol=1e-6,):
+def resolver_descenso_coordenado(puntos, pesos, max_iter=5000, tol=1e-4,):
     t0 = time.time()
     dim = len(puntos[0])
 

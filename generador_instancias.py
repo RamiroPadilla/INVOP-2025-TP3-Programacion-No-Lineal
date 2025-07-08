@@ -64,8 +64,8 @@ for n in dimensiones:
 
 #%% Iniciar mas instancias
 
-dimensiones = [2, 5, 10, 15, 20, 30]
-cant_puntos = [500, 5000, 20000]
+dimensiones = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50]
+cant_puntos = [5000]
 tipos = ['clusters']
 k_clusters = 8 # número de clusters
 rango = (-50000, 50000)
@@ -82,7 +82,26 @@ for n in dimensiones:
         for tipo in tipos:
             # Para clusters: evitar que k_clusters > m
             k_c = min(k_clusters, m)
-            nombre_archivo = f"{folder}/inst_dim{n}_n{m}_{tipo}_{k_c}_clusters.txt"
+            nombre_archivo = f"{folder}/inst_dim{n}_n{m}_{tipo}_{k_c}.txt"
             generar_instancia(n=n, m=m, rango = rango, tipo=tipo, archivo_salida=nombre_archivo, k_clusters = k_c)
+
+# %%
+dimensiones = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50]
+cant_puntos = [5000]
+tipos = ['lineal']
+rango = (-50000, 50000)
+
+# Carpeta donde guardar las instancias
+folder = 'instancias\dimensional\lineal'
+
+if not os.path.exists(folder):
+    os.makedirs(folder)
+
+# Generar todas las combinaciones
+for n in dimensiones:
+    for m in cant_puntos:
+        for tipo in tipos:
+            nombre_archivo = f"{folder}/inst_dim{n}_n{m}_{tipo}.txt"
+            generar_instancia(n=n, m=m, rango = rango, tipo=tipo, archivo_salida=nombre_archivo)
 
 # %%

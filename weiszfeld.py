@@ -79,7 +79,7 @@ def T_somb(xk, P, w):
             
 
 # Algoritmo de Weiszfeld
-def weiszfeld(P, w, tol=1e-6, max_iter=5000):
+def weiszfeld(P, w, tol=1e-4, max_iter=5000):
     #Con ambas modificaciones
     # Devuelve el punto optimo y el tiempo de ejecución
 

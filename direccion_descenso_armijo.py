@@ -14,7 +14,7 @@ def gradiente_funcion(x, P, w):
 
 # 3 - Direccion de descenso por gradiente, usando el criterio de armijo (para el alpha)
 # Selecciono alphak 0.5 (entre 0,1 y 0,9 alphak) y c1 para poder cambiarlos si hace falta
-def descenso_gradiente_armijo(P, w, x0=None, tol=1e-6, max_iter=5000, alpha0=1.0, alphak=0.5, c1=1e-4):
+def descenso_gradiente_armijo(P, w, x0=None, tol=1e-4, max_iter=5000, alpha0=1.0, alphak=0.5, c1=1e-4):
     t0 = time.time()
     # inicializo a x
     if x0 is None:
