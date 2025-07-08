@@ -17,6 +17,7 @@ def resultados(ruta_carpeta):
         P = datos[:, :-1]
         w = datos[:, -1]  
 
+        print(f'Ejecutando archivo: {txt}')
         p_optimo_weiszfeld, t_weisz, it_weisz = weiszfeld(P, w)
         resultados.append({
             'nombre_instancia': txt,
