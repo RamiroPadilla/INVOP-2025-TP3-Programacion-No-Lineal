@@ -105,3 +105,22 @@ for n in dimensiones:
             generar_instancia(n=n, m=m, rango = rango, tipo=tipo, archivo_salida=nombre_archivo)
 
 # %%
+dimensiones = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50]
+cant_puntos = [5000]
+tipos = ['uniforme']
+rango = (-50000, 50000)
+
+# Carpeta donde guardar las instancias
+folder = 'instancias\\dimensional\\uniforme'
+
+if not os.path.exists(folder):
+    os.makedirs(folder)
+
+# Generar todas las combinaciones
+for n in dimensiones:
+    for m in cant_puntos:
+        for tipo in tipos:
+            nombre_archivo = f"{folder}/inst_dim{n}_n{m}_{tipo}.txt"
+            generar_instancia(n=n, m=m, rango = rango, tipo=tipo, archivo_salida=nombre_archivo)
+
+# %%
