@@ -62,7 +62,10 @@ def main():
     # ruta_dim = 'instancias\dimensional\cluster'
     # resultados(ruta_dim)
 
-    ruta_dim = 'instancias\dimensional\lineal'
+    # ruta_dim = 'instancias\dimensional\lineal'
+    # resultados(ruta_dim)
+
+    ruta_dim = 'instancias\\dimensional\\uniforme'
     resultados(ruta_dim)
 
 if __name__ == "__main__":
